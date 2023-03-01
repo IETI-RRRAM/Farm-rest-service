@@ -1,5 +1,6 @@
 package edu.eci.agronomo.farm.model.ranch;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import nonapi.io.github.classgraph.json.Id;
@@ -10,11 +11,13 @@ import java.util.List;
 
 @Getter
 @Setter
-@Document(collection = "ranch-collection")
+@Document(collection = "ranch_collection")
 public class Ranch {
     private static final long serialVersionUID = 1L;
     @Id
-    private final String id;
+    @JsonIgnore
+    private String id;
+    private String landId;
     private String name;
     private String subPurpose;
     private String location;
@@ -22,14 +25,15 @@ public class Ranch {
 
     public Ranch() {
         this.id = "";
+        this.landId = "";
         this.name = "";
         this.subPurpose = "";
         this.location = "";
         this.area = 0;
     }
 
-    public Ranch(String id, String name, String subPurpose, String location, Float area) {
-        this.id = id;
+    public Ranch(String landId, String name, String subPurpose, String location, Float area) {
+        this.landId = landId;
         this.name = name;
         this.subPurpose = subPurpose;
         this.location = location;
@@ -37,6 +41,7 @@ public class Ranch {
     }
 
     public void update(RanchDto ranchDto) {
+        this.landId = ranchDto.landId();
         this.name = ranchDto.name();
         this.subPurpose = ranchDto.subPurpose();
         this.location = ranchDto.location();

@@ -31,9 +31,9 @@ public class FarmController {
 
     @GetMapping(path = "/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> getById(@PathVariable String id) {
-        Optional<Farm> optionalProduct = farmService.getById(id);
-        if (optionalProduct.isPresent()) {
-            Farm product = optionalProduct.get();
+        Optional<Farm> optionalFarm = farmService.getById(id);
+        if (optionalFarm.isPresent()) {
+            Farm product = optionalFarm.get();
             return ResponseEntity.ok(product);
         }
         else throw new FarmNotFoundException(id);
@@ -41,27 +41,27 @@ public class FarmController {
 
     @PostMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> create(@RequestBody Farm farm) {
-        Farm newProduct = farmService.create(farm);
-        URI createdProductUri = URI.create("");
-        return ResponseEntity.created(createdProductUri).body(newProduct);
+        Farm newFarm = farmService.create(farm);
+        URI createdFarmUri = URI.create("");
+        return ResponseEntity.created(createdFarmUri).body(newFarm);
     }
 
     @PutMapping(path = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> update(@PathVariable String id, @RequestBody FarmDto farm) {
-        Optional<Farm> optionalProduct = farmService.getById(id);
-        if (optionalProduct.isPresent()) {
-            farmService.create(optionalProduct.get());
-            Farm updatedProduct = farmService.update(id, farm);
-            return ResponseEntity.ok(updatedProduct);
+        Optional<Farm> optionalFarm = farmService.getById(id);
+        if (optionalFarm.isPresent()) {
+            farmService.create(optionalFarm.get());
+            Farm updatedFarm = farmService.update(id, farm);
+            return ResponseEntity.ok(updatedFarm);
         }
         else throw new FarmNotFoundException(id);
     }
 
     @DeleteMapping(path = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
-        Optional<Farm> optionalProduct = farmService.getById(id);
-        if (optionalProduct.isPresent()) {
-            farmService.create(optionalProduct.get());
+        Optional<Farm> optionalFarm = farmService.getById(id);
+        if (optionalFarm.isPresent()) {
+            farmService.create(optionalFarm.get());
             farmService.deleteById(id);
             return ResponseEntity.ok().build();
         }

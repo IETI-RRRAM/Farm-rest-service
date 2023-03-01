@@ -24,17 +24,17 @@ public class FarmServiceImpl implements FarmService {
     private final HashMap<String, Farm> memory = new HashMap<>();
 
     @Override
-    public Farm create(Farm product) {
-        return farmMongoRepository.save(product);
+    public Farm create(Farm farm) {
+        return farmMongoRepository.save(farm);
     }
 
     @Override
     public Optional<Farm> getById(String id) {
-        Farm product = memory.get(id);
-        if (product == null) {
+        Farm farm = memory.get(id);
+        if (farm == null) {
             return Optional.empty();
         }
-        return Optional.of(product);
+        return Optional.of(farm);
     }
 
     @Override
