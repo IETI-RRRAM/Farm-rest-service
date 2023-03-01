@@ -3,7 +3,7 @@ package edu.eci.agronomo.farm.controller;
 import edu.eci.agronomo.farm.exception.FarmNotFoundException;
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
-import edu.eci.agronomo.farm.service.FarmService;
+import edu.eci.agronomo.farm.service.farm.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
