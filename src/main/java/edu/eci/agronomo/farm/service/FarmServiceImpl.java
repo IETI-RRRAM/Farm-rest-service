@@ -2,6 +2,8 @@ package edu.eci.agronomo.farm.service;
 
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
+import edu.eci.agronomo.farm.respository.FarmMongoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,11 +14,18 @@ import java.util.Optional;
 @Service
 public class FarmServiceImpl implements FarmService {
 
+    private final FarmMongoRepository farmMongoRepository;
+
+    @Autowired
+    public FarmServiceImpl(FarmMongoRepository farmMongoRepository) {
+        this.farmMongoRepository = farmMongoRepository;
+    }
+
     private final HashMap<String, Farm> memory = new HashMap<>();
 
     @Override
     public Farm create(Farm product) {
-        return memory.put(product.getId(), product);
+        return farmMongoRepository.save(product);
     }
 
     @Override

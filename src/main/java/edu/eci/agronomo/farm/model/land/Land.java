@@ -4,13 +4,18 @@ import edu.eci.agronomo.farm.model.ranch.Ranch;
 import edu.eci.agronomo.farm.model.ranch.RanchDto;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Document(collection = "land-collection")
 public class Land {
+    private static final long serialVersionUID = 1L;
+    @Id
     private final String id;
     private String name;
     private String subPurpose;
