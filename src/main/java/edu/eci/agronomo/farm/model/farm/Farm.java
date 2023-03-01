@@ -37,10 +37,10 @@ public class Farm {
     }
 
     public void update(FarmDto farmDto){
-        this.name = farmDto.getName();
-        this.purpose = farmDto.getPurpose();
-        this.location = farmDto.getLocation();
-        this.lands = farmDto.getLands();
-        this.area = farmDto.getArea();
+        this.name = farmDto.name();
+        this.purpose = farmDto.purpose();
+        this.location = farmDto.location();
+        this.lands = farmDto.lands();
+        this.area = farmDto.area();
     }
 }
