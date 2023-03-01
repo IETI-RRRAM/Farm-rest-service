@@ -1,6 +1,6 @@
 package edu.eci.agronomo.farm.controller;
 
-import edu.eci.agronomo.farm.model.Farm;
+import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
