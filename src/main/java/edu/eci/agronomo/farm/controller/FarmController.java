@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/farm")
 public class FarmController {
+    @Autowired
     private final FarmService farmService;
 
     @Autowired
