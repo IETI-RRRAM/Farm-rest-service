@@ -4,10 +4,12 @@ import edu.eci.agronomo.farm.model.ranch.Ranch;
 import edu.eci.agronomo.farm.model.ranch.RanchDto;
 import edu.eci.agronomo.farm.respository.ranch.RanchMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RanchServiceImpl implements RanchService {
 
     private final RanchMongoRepository ranchMongoRepository;
