@@ -42,7 +42,13 @@ public class Farm implements Serializable {
         this.location = location;
         this.area = area;
     }
-
+    public Farm(FarmDto farmDto){
+        this.ownerId = farmDto.ownerId();
+        this.name = farmDto.name();
+        this.purpose = farmDto.purpose();
+        this.location = farmDto.location();
+        this.area = farmDto.area();
+    }
     public void update(FarmDto farmDto){
         this.ownerId = farmDto.ownerId();
         this.name = farmDto.name();
