@@ -1,12 +1,15 @@
 package edu.eci.agronomo.farm.service;
 
-import edu.eci.agronomo.farm.model.Farm;
+
+
+import edu.eci.agronomo.farm.model.farm.Farm;
+import edu.eci.agronomo.farm.model.farm.FarmDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface  FarmService {
-    Farm save(Farm product);
+    Farm create(Farm product);
 
     Optional<Farm> getById(String id);
 
@@ -14,6 +17,6 @@ public interface  FarmService {
 
     void deleteById(String id);
 
-    Farm update(Farm farm, String farmId);
+    Farm update(String farmId, FarmDto farm);
 
 }

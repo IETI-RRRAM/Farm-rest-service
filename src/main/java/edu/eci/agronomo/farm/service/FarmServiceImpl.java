@@ -1,8 +1,10 @@
 package edu.eci.agronomo.farm.service;
 
-import edu.eci.agronomo.farm.model.Farm;
+import edu.eci.agronomo.farm.model.farm.Farm;
+import edu.eci.agronomo.farm.model.farm.FarmDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +15,7 @@ public class FarmServiceImpl implements FarmService {
     private final HashMap<String, Farm> memory = new HashMap<>();
 
     @Override
-    public Farm save(Farm product) {
+    public Farm create(Farm product) {
         return memory.put(product.getId(), product);
     }
 
@@ -27,8 +29,8 @@ public class FarmServiceImpl implements FarmService {
     }
 
     @Override
-    public List<Farm> all() {
-        return (List<Farm>) memory;
+    public List<Farm> getAll() {
+        return new ArrayList<>(memory.values());
     }
 
     @Override
@@ -37,9 +39,9 @@ public class FarmServiceImpl implements FarmService {
     }
 
     @Override
-    public Farm update(FarmDto farmDto, String id) {
-        Farm updatedProduct =  memory.get(id);
-        updatedProduct.update(productDto);
-        return updatedProduct;
+    public Farm update(String id, FarmDto farm) {
+        Farm updatedFarm =  memory.get(id);
+        updatedFarm.update(farm);
+        return updatedFarm;
     }
 }
