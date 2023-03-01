@@ -5,6 +5,7 @@ import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
 import edu.eci.agronomo.farm.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,12 @@ public class FarmController {
         this.farmService = farmService;
     }
 
-    @GetMapping
+    @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Farm>> getAll() {
         return ResponseEntity.ok(farmService.getAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> getById(@PathVariable String id) {
         Optional<Farm> optionalProduct = farmService.getById(id);
         if (optionalProduct.isPresent()) {
@@ -38,14 +39,14 @@ public class FarmController {
         else throw new FarmNotFoundException(id);
     }
 
-    @PostMapping
+    @PostMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> create(@RequestBody Farm farm) {
         Farm newProduct = farmService.create(farm);
         URI createdProductUri = URI.create("");
         return ResponseEntity.created(createdProductUri).body(newProduct);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Farm> update(@PathVariable String id, @RequestBody FarmDto farm) {
         Optional<Farm> optionalProduct = farmService.getById(id);
         if (optionalProduct.isPresent()) {
@@ -56,7 +57,7 @@ public class FarmController {
         else throw new FarmNotFoundException(id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         Optional<Farm> optionalProduct = farmService.getById(id);
         if (optionalProduct.isPresent()) {

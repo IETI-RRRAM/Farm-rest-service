@@ -1,6 +1,7 @@
 package edu.eci.agronomo.farm.model.land;
 
 import edu.eci.agronomo.farm.model.ranch.Ranch;
+import edu.eci.agronomo.farm.model.ranch.RanchDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,5 +34,13 @@ public class Land {
         this.location = location;
         this.ranches = ranches;
         this.area = area;
+    }
+
+    public void update(LandDto landDto) {
+        this.name = landDto.name();
+        this.subPurpose = landDto.subPurpose();
+        this.location = landDto.location();
+        this.ranches = landDto.ranches();
+        this.area = landDto.area();
     }
 }

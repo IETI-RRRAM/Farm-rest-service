@@ -31,4 +31,11 @@ public class Ranch {
         this.location = location;
         this.area = area;
     }
+
+    public void update(RanchDto ranchDto) {
+        this.name = ranchDto.name();
+        this.subPurpose = ranchDto.subPurpose();
+        this.location = ranchDto.location();
+        this.area = ranchDto.area();
+    }
 }
