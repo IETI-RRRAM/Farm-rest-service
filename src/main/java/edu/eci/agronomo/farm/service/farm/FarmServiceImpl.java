@@ -1,8 +1,8 @@
-package edu.eci.agronomo.farm.service;
+package edu.eci.agronomo.farm.service.farm;
 
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
-import edu.eci.agronomo.farm.respository.FarmMongoRepository;
+import edu.eci.agronomo.farm.respository.farm.FarmMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +21,6 @@ public class FarmServiceImpl implements FarmService {
         this.farmMongoRepository = farmMongoRepository;
     }
 
-    private final HashMap<String, Farm> memory = new HashMap<>();
-
     @Override
     public Farm create(Farm farm) {
         return farmMongoRepository.save(farm);
@@ -30,27 +28,25 @@ public class FarmServiceImpl implements FarmService {
 
     @Override
     public Optional<Farm> getById(String id) {
-        Farm farm = memory.get(id);
-        if (farm == null) {
-            return Optional.empty();
-        }
-        return Optional.of(farm);
+        return farmMongoRepository.findById(id);
     }
 
     @Override
     public List<Farm> getAll() {
-        return new ArrayList<>(memory.values());
+        return farmMongoRepository.findAll();
     }
 
     @Override
     public void deleteById(String id) {
-        memory.remove(id);
+        farmMongoRepository.deleteById(id);
     }
 
     @Override
     public Farm update(String id, FarmDto farm) {
-        Farm updatedFarm =  memory.get(id);
-        updatedFarm.update(farm);
-        return updatedFarm;
+        Optional<Farm> farmToUpdate = farmMongoRepository.findById(id);
+        Farm fr = farmToUpdate.orElseThrow();
+        fr.update(farm);
+        farmMongoRepository.save(fr);
+        return fr;
     }
 }

@@ -1,4 +1,4 @@
-package edu.eci.agronomo.farm.service;
+package edu.eci.agronomo.farm.service.farm;
 
 
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface  FarmService {
-    Farm create(Farm product);
+    Farm create(Farm farm);
 
     Optional<Farm> getById(String id);
 
