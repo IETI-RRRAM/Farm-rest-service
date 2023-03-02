@@ -1,4 +1,4 @@
-package edu.eci.agronomo.farm.respository.ranch;
+package edu.eci.agronomo.farm.repository.ranch;
 
 import edu.eci.agronomo.farm.model.ranch.Ranch;
 import org.springframework.data.mongodb.repository.MongoRepository;

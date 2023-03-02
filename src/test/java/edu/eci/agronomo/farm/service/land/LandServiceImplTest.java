@@ -2,7 +2,7 @@ package edu.eci.agronomo.farm.service.land;
 
 import edu.eci.agronomo.farm.model.land.Land;
 import edu.eci.agronomo.farm.model.land.LandDto;
-import edu.eci.agronomo.farm.respository.land.LandMongoRepository;
+import edu.eci.agronomo.farm.repository.land.LandMongoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
