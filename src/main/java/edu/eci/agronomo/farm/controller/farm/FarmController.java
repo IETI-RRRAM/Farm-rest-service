@@ -1,4 +1,4 @@
-package edu.eci.agronomo.farm.controller;
+package edu.eci.agronomo.farm.controller.farm;
 
 import edu.eci.agronomo.farm.exception.FarmNotFoundException;
 import edu.eci.agronomo.farm.model.farm.Farm;
@@ -33,8 +33,8 @@ public class FarmController {
     public ResponseEntity<Farm> getById(@PathVariable String id) {
         Optional<Farm> optionalFarm = farmService.getById(id);
         if (optionalFarm.isPresent()) {
-            Farm product = optionalFarm.get();
-            return ResponseEntity.ok(product);
+            Farm farm = optionalFarm.get();
+            return ResponseEntity.ok(farm);
         }
         else throw new FarmNotFoundException(id);
     }

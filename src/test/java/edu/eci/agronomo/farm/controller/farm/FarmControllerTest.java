@@ -1,5 +1,6 @@
-package edu.eci.agronomo.farm.controller;
+package edu.eci.agronomo.farm.controller.farm;
 
+import edu.eci.agronomo.farm.controller.farm.FarmController;
 import edu.eci.agronomo.farm.exception.FarmNotFoundException;
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
@@ -83,7 +84,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testFindByIdNotExistingUser() throws Exception {
+    public void testFindByIdNotExistingFarm() throws Exception {
         String id = "511";
         when(farmService.getById(id)).thenReturn(Optional.empty());
 
@@ -99,7 +100,7 @@ public class FarmControllerTest {
 
 
     @Test
-    public void testSaveNewUser() throws Exception {
+    public void testSaveNewFarm() throws Exception {
         FarmDto userDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(userDto);
 
@@ -116,7 +117,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testUpdateExistingUser() throws Exception {
+    public void testUpdateExistingFarm() throws Exception {
         FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(farmDto);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
@@ -131,7 +132,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testUpdateNotExistingUser() throws Exception {
+    public void testUpdateNotExistingFarm() throws Exception {
         String id = "1";
         when(farmService.getById(id)).thenReturn(Optional.empty());
         String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
@@ -146,7 +147,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testDeleteExistingUser() throws Exception {
+    public void testDeleteExistingFarm() throws Exception {
         FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(farmDto);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
@@ -161,7 +162,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testDeleteNotExistingUser() throws Exception {
+    public void testDeleteNotExistingFarm() throws Exception {
         String id = "1";
         when(farmService.getById(id)).thenReturn(Optional.empty());
 

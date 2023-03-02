@@ -42,6 +42,14 @@ public class Land {
         this.area = area;
     }
 
+    public Land(LandDto landDto) {
+        this.name = landDto.name();
+        this.subPurpose = landDto.subPurpose();
+        this.location = landDto.location();
+        this.farmId = landDto.farmId();
+        this.area = landDto.area();
+    }
+
     public void update(LandDto landDto) {
         this.name = landDto.name();
         this.subPurpose = landDto.subPurpose();
