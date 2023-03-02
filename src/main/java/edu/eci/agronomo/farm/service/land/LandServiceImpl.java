@@ -2,7 +2,7 @@ package edu.eci.agronomo.farm.service.land;
 
 import edu.eci.agronomo.farm.model.land.Land;
 import edu.eci.agronomo.farm.model.land.LandDto;
-import edu.eci.agronomo.farm.respository.land.LandMongoRepository;
+import edu.eci.agronomo.farm.repository.land.LandMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

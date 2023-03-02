@@ -1,5 +1,6 @@
-package edu.eci.agronomo.farm.controller;
+package edu.eci.agronomo.farm.controller.farm;
 
+import edu.eci.agronomo.farm.controller.farm.FarmController;
 import edu.eci.agronomo.farm.exception.FarmNotFoundException;
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
@@ -12,6 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
@@ -53,7 +56,35 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testFindByIdNotExistingUser() throws Exception {
+    public void testFindByAllFarms() throws Exception {
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
+        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
+        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4", (float) 0.22321);
+
+        List<Farm> farmList = new ArrayList<>();
+
+        farmList.add(farm);
+        farmList.add(farm2);
+        farmList.add(farm3);
+        farmList.add(farm4);
+
+        when(farmService.getAll()).thenReturn(farmList);
+
+        mockMvc.perform(get(BASE_URL))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[2].name", is("Ada3")))
+                .andExpect(jsonPath("$.[2].purpose", is("Ganado3")))
+                .andExpect(jsonPath("$.[2].location", is("Cogua3")))
+                .andExpect(jsonPath("$.[1].name", is("Ada2")))
+                .andExpect(jsonPath("$.[1].purpose", is("Ganado2")))
+                .andExpect(jsonPath("$.[1].location", is("Cogua2")));
+
+        verify(farmService, times(1)).getAll();
+    }
+
+    @Test
+    public void testFindByIdNotExistingFarm() throws Exception {
         String id = "511";
         when(farmService.getById(id)).thenReturn(Optional.empty());
 
@@ -69,7 +100,7 @@ public class FarmControllerTest {
 
 
     @Test
-    public void testSaveNewUser() throws Exception {
+    public void testSaveNewFarm() throws Exception {
         FarmDto userDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(userDto);
 
@@ -86,7 +117,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testUpdateExistingUser() throws Exception {
+    public void testUpdateExistingFarm() throws Exception {
         FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(farmDto);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
@@ -101,7 +132,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testUpdateNotExistingUser() throws Exception {
+    public void testUpdateNotExistingFarm() throws Exception {
         String id = "1";
         when(farmService.getById(id)).thenReturn(Optional.empty());
         String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
@@ -116,7 +147,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testDeleteExistingUser() throws Exception {
+    public void testDeleteExistingFarm() throws Exception {
         FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
         Farm farm = new Farm(farmDto);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
@@ -131,7 +162,7 @@ public class FarmControllerTest {
     }
 
     @Test
-    public void testDeleteNotExistingUser() throws Exception {
+    public void testDeleteNotExistingFarm() throws Exception {
         String id = "1";
         when(farmService.getById(id)).thenReturn(Optional.empty());
 
