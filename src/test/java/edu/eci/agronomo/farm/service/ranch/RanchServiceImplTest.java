@@ -2,7 +2,7 @@ package edu.eci.agronomo.farm.service.ranch;
 
 import edu.eci.agronomo.farm.model.ranch.Ranch;
 import edu.eci.agronomo.farm.model.ranch.RanchDto;
-import edu.eci.agronomo.farm.respository.ranch.RanchMongoRepository;
+import edu.eci.agronomo.farm.repository.ranch.RanchMongoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
