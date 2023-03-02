@@ -12,6 +12,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
@@ -50,6 +52,34 @@ public class FarmControllerTest {
                 .andExpect(jsonPath("$.location", is("Cogua")));
 
         verify(farmService, times(1)).getById("1");
+    }
+
+    @Test
+    public void testFindByAllFarms() throws Exception {
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
+        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
+        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4", (float) 0.22321);
+
+        List<Farm> farmList = new ArrayList<>();
+
+        farmList.add(farm);
+        farmList.add(farm2);
+        farmList.add(farm3);
+        farmList.add(farm4);
+
+        when(farmService.getAll()).thenReturn(farmList);
+
+        mockMvc.perform(get(BASE_URL))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[2].name", is("Ada3")))
+                .andExpect(jsonPath("$.[2].purpose", is("Ganado3")))
+                .andExpect(jsonPath("$.[2].location", is("Cogua3")))
+                .andExpect(jsonPath("$.[1].name", is("Ada2")))
+                .andExpect(jsonPath("$.[1].purpose", is("Ganado2")))
+                .andExpect(jsonPath("$.[1].location", is("Cogua2")));
+
+        verify(farmService, times(1)).getAll();
     }
 
     @Test
