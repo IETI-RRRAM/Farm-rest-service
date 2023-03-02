@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @SpringBootTest
-public class LandServiceImplTest {
+public class FarmServiceImplTest {
 
     @MockBean
     private FarmMongoRepository farmMongoRepository;
