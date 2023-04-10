@@ -119,8 +119,11 @@ public class FarmControllerTest {
     @Test
     public void testUpdateExistingFarm() throws Exception {
         FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        FarmDto farmDtoUpdated = new FarmDto("Ada", "Ada", "Ganado", "Cogua", (float) 0.0124);
         Farm farm = new Farm(farmDto);
+        Farm farmUpdated = new Farm(farmDtoUpdated);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
+        when(farmService.update("1", farmDtoUpdated)).thenReturn(farmUpdated);
 
         String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + "1")

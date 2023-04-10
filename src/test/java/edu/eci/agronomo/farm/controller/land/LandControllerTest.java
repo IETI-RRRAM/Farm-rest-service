@@ -118,10 +118,12 @@ public class LandControllerTest {
     @Test
     public void testUpdateExistingLand() throws Exception {
         LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        LandDto landDtoUpdated = new LandDto("Ada", "Ada", "Ganado", "Cogua", (float) 0.0124);
         Land land = new Land(landDto);
         when(landService.getById("1")).thenReturn(Optional.of(land));
+        when(landService.update("1",landDtoUpdated)).thenReturn(land);
 
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"farmId\":\"Ada\",\"name\":\"Ada\",\"subPurpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
