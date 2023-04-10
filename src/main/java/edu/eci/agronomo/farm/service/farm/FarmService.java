@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface  FarmService {
     Farm create(Farm farm);
-
+    Optional<List<Farm>> getByOwnerId(String id);
     Optional<Farm> getById(String id);
 
     List<Farm> getAll();

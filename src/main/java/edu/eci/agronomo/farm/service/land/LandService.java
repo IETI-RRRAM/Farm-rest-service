@@ -11,6 +11,8 @@ public interface LandService {
 
     Optional<Land> getById(String id);
 
+    Optional<List<Land>> getByFarmId(String farmId);
+
     List<Land> getAll();
 
     void deleteById(String id);

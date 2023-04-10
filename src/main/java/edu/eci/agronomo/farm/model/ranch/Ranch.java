@@ -3,8 +3,9 @@ package edu.eci.agronomo.farm.model.ranch;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,6 @@ public class Ranch {
     private float area;
 
     public Ranch() {
-        this.id = "";
         this.landId = "";
         this.name = "";
         this.subPurpose = "";

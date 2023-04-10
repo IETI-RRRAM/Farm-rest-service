@@ -16,6 +16,7 @@ public class FarmResponse {
     private String location;
     private float area;
 
+
     public FarmResponse(Farm farm) {
         this.id = farm.getId();
         this.ownerId = farm.getOwnerId();
