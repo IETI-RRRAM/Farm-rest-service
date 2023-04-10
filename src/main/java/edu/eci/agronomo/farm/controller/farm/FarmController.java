@@ -3,6 +3,7 @@ package edu.eci.agronomo.farm.controller.farm;
 import edu.eci.agronomo.farm.exception.FarmNotFoundException;
 import edu.eci.agronomo.farm.model.farm.Farm;
 import edu.eci.agronomo.farm.model.farm.FarmDto;
+import edu.eci.agronomo.farm.response.FarmResponse;
 import edu.eci.agronomo.farm.service.farm.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -40,10 +41,11 @@ public class FarmController {
     }
 
     @PostMapping(produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Farm> create(@RequestBody Farm farm) {
+    public ResponseEntity<FarmResponse> create(@RequestBody Farm farm) {
         Farm newFarm = farmService.create(farm);
+        System.out.println(newFarm.getId());
         URI createdFarmUri = URI.create("");
-        return ResponseEntity.created(createdFarmUri).body(newFarm);
+        return ResponseEntity.created(createdFarmUri).body(new FarmResponse(newFarm));
     }
 
     @PutMapping(path = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
