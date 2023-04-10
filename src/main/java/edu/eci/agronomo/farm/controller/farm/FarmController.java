@@ -39,7 +39,6 @@ public class FarmController {
     @GetMapping(path = "/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FarmResponse> getById(@PathVariable String id) {
         Optional<Farm> optionalFarm = farmService.getById(id);
-        System.out.println(optionalFarm);
         if (optionalFarm.isPresent()) {
             Farm farm = optionalFarm.get();
             return ResponseEntity.ok(new FarmResponse(farm));

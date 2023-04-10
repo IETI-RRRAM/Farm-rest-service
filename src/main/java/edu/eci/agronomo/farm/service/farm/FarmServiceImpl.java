@@ -31,7 +31,6 @@ public class FarmServiceImpl implements FarmService {
 
     @Override
     public Optional<Farm> getById(String id) {
-        System.out.println(farmMongoRepository.findById(id));
         return farmMongoRepository.findById(id);
     }
 
