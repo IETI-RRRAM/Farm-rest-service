@@ -23,8 +23,15 @@ public class FarmServiceImpl implements FarmService {
     public Farm create(Farm farm) {
         return farmMongoRepository.save(farm);
     }
+
+    @Override
+    public Optional<List<Farm>> getByOwnerId(String id) {
+        return farmMongoRepository.findByOwnerId(id);
+    }
+
     @Override
     public Optional<Farm> getById(String id) {
+        System.out.println(farmMongoRepository.findById(id));
         return farmMongoRepository.findById(id);
     }
 

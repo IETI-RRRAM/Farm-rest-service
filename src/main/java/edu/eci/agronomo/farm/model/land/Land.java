@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ public class Land {
     private float area;
 
     public Land() {
-        this.id = "";
         this.name = "";
         this.subPurpose = "";
         this.location = "";

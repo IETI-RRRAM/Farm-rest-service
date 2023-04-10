@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
 
@@ -13,7 +14,6 @@ import java.io.Serializable;
 @Document(collection = "farm_collection")
 public class Farm implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @JsonIgnore
     private String id;
@@ -24,7 +24,6 @@ public class Farm implements Serializable {
     private float area;
 
     public Farm() {
-        this.id = "";
         this.ownerId="";
         this.name = "";
         this.purpose = "";

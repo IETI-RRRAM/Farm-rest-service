@@ -30,6 +30,11 @@ public class RanchServiceImpl implements RanchService {
     }
 
     @Override
+    public Optional<List<Ranch>> getByLandId(String landId) {
+        return ranchMongoRepository.findByLandId(landId);
+    }
+
+    @Override
     public List<Ranch> getAll() {
         return ranchMongoRepository.findAll();
     }

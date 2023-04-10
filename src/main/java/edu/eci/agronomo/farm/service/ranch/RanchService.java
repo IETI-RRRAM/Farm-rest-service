@@ -11,6 +11,8 @@ public interface RanchService {
 
     Optional<Ranch> getById(String id);
 
+    Optional<List<Ranch>> getByLandId(String landId);
+
     List<Ranch> getAll();
 
     void deleteById(String id);

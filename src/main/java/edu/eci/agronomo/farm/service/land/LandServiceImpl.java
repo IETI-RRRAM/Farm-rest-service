@@ -31,6 +31,11 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
+    public Optional<List<Land>> getByFarmId(String farmId) {
+        return landMongoRepository.findByFarmId(farmId);
+    }
+
+    @Override
     public List<Land> getAll() {
         return landMongoRepository.findAll();
     }
