@@ -90,7 +90,7 @@ public class RanchServiceImplTest {
     @Test
     public void testUpdateFarm() throws Exception {
         Ranch ranch = new Ranch("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        RanchDto ranchDto = new RanchDto("1", "Ada2", "Ganado", "Cogua", new ArrayList<>('1') ,(float) 0.22321);
+        RanchDto ranchDto = new RanchDto("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
         Ranch ranch2 = new Ranch("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
 
         when(ranchMongoRepository.findById("1")).thenReturn(Optional.of(ranch));
