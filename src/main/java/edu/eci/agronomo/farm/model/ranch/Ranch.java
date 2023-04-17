@@ -22,6 +22,7 @@ public class Ranch {
     private String name;
     private String subPurpose;
     private String location;
+    private String imageUrl;
     private float area;
 
     public Ranch() {
@@ -29,14 +30,16 @@ public class Ranch {
         this.name = "";
         this.subPurpose = "";
         this.location = "";
+        this.imageUrl = "";
         this.area = 0;
     }
 
-    public Ranch(String landId, String name, String subPurpose, String location, Float area) {
+    public Ranch(String landId, String name, String subPurpose, String location, String imageUrl, Float area) {
         this.landId = landId;
         this.name = name;
         this.subPurpose = subPurpose;
         this.location = location;
+        this.imageUrl = imageUrl;
         this.area = area;
     }
 
@@ -45,6 +48,7 @@ public class Ranch {
         this.name = ranchDto.name();
         this.subPurpose = ranchDto.subPurpose();
         this.location = ranchDto.location();
+        this.imageUrl = ranchDto.imageUrl();
         this.area = ranchDto.area();
     }
 }

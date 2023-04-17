@@ -14,6 +14,7 @@ public class FarmResponse {
     private String name;
     private String purpose;
     private String location;
+    private String imageUrl;
     private float area;
 
 
@@ -23,6 +24,7 @@ public class FarmResponse {
         this.name = farm.getName();
         this.purpose = farm.getPurpose();
         this.location = farm.getLocation();
+        this.imageUrl = farm.getImageUrl();
         this.area = farm.getArea();
     }
 }

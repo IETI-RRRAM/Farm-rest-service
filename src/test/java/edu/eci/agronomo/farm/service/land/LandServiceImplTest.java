@@ -35,7 +35,7 @@ public class LandServiceImplTest {
 
     @Test
     public void testFindByIdExistingFarm() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(landMongoRepository.findById("1")).thenReturn(Optional.of(land));
 
         Land testLand = landService.getById("1").orElseThrow();
@@ -47,10 +47,10 @@ public class LandServiceImplTest {
 
     @Test
     public void testFindAllFarms() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        Land land1 = new Land("2", "Ada1", "Ganado1", "Cogua1", (float) 0.22321);
-        Land land2 = new Land("3", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
-        Land land3 = new Land("4", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Land land1 = new Land("2", "Ada1", "Ganado1", "Cogua1", "a" ,(float) 0.22321);
+        Land land2 = new Land("3", "Ada2", "Ganado2", "Cogua2", "a" ,(float) 0.22321);
+        Land land3 = new Land("4", "Ada3", "Ganado3", "Cogua3", "a" ,(float) 0.22321);
 
         List<Land> landList = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class LandServiceImplTest {
 
     @Test
     public void testCreateFarm() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(landMongoRepository.save(land)).thenReturn(land);
 
         Land testLand = landService.create(land);
@@ -81,7 +81,7 @@ public class LandServiceImplTest {
 
     @Test
     public void testDeleteFarm() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
 
         landService.deleteById("1");
 
@@ -90,9 +90,9 @@ public class LandServiceImplTest {
 
     @Test
     public void testUpdateFarm() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        LandDto landDto = new LandDto("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
-        Land land2 = new Land("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        LandDto landDto = new LandDto("1", "Ada2", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Land land2 = new Land("1", "Ada2", "Ganado", "Cogua", "a" ,(float) 0.22321);
 
         when(landMongoRepository.findById("1")).thenReturn(Optional.of(land));
         when(landMongoRepository.save(land)).thenReturn(land2);
