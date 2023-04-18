@@ -13,6 +13,7 @@ public class RanchResponse {
     private String name;
     private String subPurpose;
     private String location;
+    private String imageUrl;
     private float area;
 
     public RanchResponse(Ranch ranch){
@@ -21,6 +22,7 @@ public class RanchResponse {
         this.name = ranch.getName();
         this.subPurpose = ranch.getSubPurpose();
         this.location = ranch.getLocation();
+        this.imageUrl = ranch.getImageUrl();
         this.area = ranch.getArea();
     }
 }

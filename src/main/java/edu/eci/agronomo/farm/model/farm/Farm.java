@@ -21,6 +21,7 @@ public class Farm implements Serializable {
     private String name;
     private String purpose;
     private String location;
+    private String imageUrl;
     private float area;
 
     public Farm() {
@@ -28,14 +29,16 @@ public class Farm implements Serializable {
         this.name = "";
         this.purpose = "";
         this.location = "";
+        this.imageUrl = "";
         this.area = 0;
     }
 
-    public Farm(String ownerId, String name, String purpose, String location, Float area) {
+    public Farm(String ownerId, String name, String purpose, String location, String imageUrl, Float area) {
         this.ownerId = ownerId;
         this.name = name;
         this.purpose = purpose;
         this.location = location;
+        this.imageUrl = imageUrl;
         this.area = area;
     }
     public Farm(FarmDto farmDto){
@@ -43,6 +46,7 @@ public class Farm implements Serializable {
         this.name = farmDto.name();
         this.purpose = farmDto.purpose();
         this.location = farmDto.location();
+        this.imageUrl = farmDto.imageUrl();
         this.area = farmDto.area();
     }
     public void update(FarmDto farmDto){
@@ -50,6 +54,7 @@ public class Farm implements Serializable {
         this.name = farmDto.name();
         this.purpose = farmDto.purpose();
         this.location = farmDto.location();
+        this.imageUrl = farmDto.imageUrl();
         this.area = farmDto.area();
     }
 }

@@ -43,7 +43,7 @@ public class LandControllerTest {
 
     @Test
     public void testFindByIdExistingLand() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(landService.getById("1")).thenReturn(Optional.of(land));
 
         mockMvc.perform(get(BASE_URL + "1"))
@@ -57,10 +57,10 @@ public class LandControllerTest {
 
     @Test
     public void testFindByAllLands() throws Exception {
-        Land land = new Land("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        Land land1 = new Land("2", "Ada1", "Ganado1", "Cogua1", (float) 0.22321);
-        Land land2 = new Land("3", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
-        Land land3 = new Land("4", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
+        Land land = new Land("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Land land1 = new Land("2", "Ada1", "Ganado1", "Cogua1", "a" ,(float) 0.22321);
+        Land land2 = new Land("3", "Ada2", "Ganado2", "Cogua2", "a" ,(float) 0.22321);
+        Land land3 = new Land("4", "Ada3", "Ganado3", "Cogua3", "a" ,(float) 0.22321);
 
         List<Land> landList = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public class LandControllerTest {
 
     @Test
     public void testSaveNewLand() throws Exception {
-        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Land land = new Land(landDto);
 
         when(landService.create(any())).thenReturn(land);
@@ -117,13 +117,13 @@ public class LandControllerTest {
 
     @Test
     public void testUpdateExistingLand() throws Exception {
-        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        LandDto landDtoUpdated = new LandDto("Ada", "Ada", "Ganado", "Cogua", (float) 0.0124);
+        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        LandDto landDtoUpdated = new LandDto("Ada", "Ada", "Ganado", "Cogua", "a" ,(float) 0.0124);
         Land land = new Land(landDto);
         when(landService.getById("1")).thenReturn(Optional.of(land));
         when(landService.update("1",landDtoUpdated)).thenReturn(land);
 
-        String json = "{\"id\":\"1\",\"farmId\":\"Ada\",\"name\":\"Ada\",\"subPurpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"farmId\":\"Ada\",\"name\":\"Ada\",\"subPurpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -136,7 +136,7 @@ public class LandControllerTest {
     public void testUpdateNotExistingLand() throws Exception {
         String id = "1";
         when(landService.getById(id)).thenReturn(Optional.empty());
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -149,11 +149,11 @@ public class LandControllerTest {
 
     @Test
     public void testDeleteExistingLand() throws Exception {
-        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        LandDto landDto = new LandDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Land land = new Land(landDto);
         when(landService.getById("1")).thenReturn(Optional.of(land));
 
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(delete(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))

@@ -42,7 +42,7 @@ public class RanchControllerTest {
 
     @Test
     public void testFindByIdExistingRanch() throws Exception {
-        Ranch ranch = new Ranch("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Ranch ranch = new Ranch("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(ranchService.getById("1")).thenReturn(Optional.of(ranch));
 
         mockMvc.perform(get(BASE_URL + "1"))
@@ -56,10 +56,10 @@ public class RanchControllerTest {
 
     @Test
     public void testFindByAllRanches() throws Exception {
-        Ranch ranch = new Ranch("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        Ranch ranch2 = new Ranch("2", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
-        Ranch ranch3 = new Ranch("3", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
-        Ranch ranch4 = new Ranch("4", "Ada4", "Ganado4", "Cogua4", (float) 0.22321);
+        Ranch ranch = new Ranch("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Ranch ranch2 = new Ranch("2", "Ada2", "Ganado2", "Cogua2", "a" ,(float) 0.22321);
+        Ranch ranch3 = new Ranch("3", "Ada3", "Ganado3", "Cogua3", "a" ,(float) 0.22321);
+        Ranch ranch4 = new Ranch("4", "Ada4", "Ganado4", "Cogua4", "a" ,(float) 0.22321);
 
         List<Ranch> ranchList = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public class RanchControllerTest {
 
     @Test
     public void testSaveNewURanch() throws Exception {
-        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Ranch ranch = new Ranch();
         ranch.update(ranchDto);
 
@@ -118,14 +118,14 @@ public class RanchControllerTest {
 
     @Test
     public void testUpdateExistingRanch() throws Exception {
-        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        RanchDto ranchDtoUpdated = new RanchDto("Ada", "Ada", "Ganado", "Cogua", (float) 0.0124);
+        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        RanchDto ranchDtoUpdated = new RanchDto("Ada", "Ada", "Ganado", "Cogua", "a" ,(float) 0.0124);
         Ranch ranch = new Ranch();
         ranch.update(ranchDto);
         when(ranchService.getById("1")).thenReturn(Optional.of(ranch));
         when(ranchService.update("1",ranchDtoUpdated)).thenReturn(ranch);
 
-        String json = "{\"id\":\"1\",\"landId\":\"Ada\",\"name\":\"Ada\",\"subPurpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"landId\":\"Ada\",\"name\":\"Ada\",\"subPurpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\",\"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -138,7 +138,7 @@ public class RanchControllerTest {
     public void testUpdateNotExistingRanch() throws Exception {
         String id = "1";
         when(ranchService.getById(id)).thenReturn(Optional.empty());
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -151,7 +151,7 @@ public class RanchControllerTest {
 
     @Test
     public void testDeleteExistingRanch() throws Exception {
-        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        RanchDto ranchDto = new RanchDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Ranch ranch = new Ranch();
         ranch.update(ranchDto);
         when(ranchService.getById("1")).thenReturn(Optional.of(ranch));

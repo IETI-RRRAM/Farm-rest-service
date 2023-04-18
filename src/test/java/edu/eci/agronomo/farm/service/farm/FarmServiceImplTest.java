@@ -33,7 +33,7 @@ public class FarmServiceImplTest {
 
     @Test
     public void testFindByIdExistingFarm() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(farmMongoRepository.findById("1")).thenReturn(Optional.of(farm));
 
         Farm testFarm = farmService.getById("1").orElseThrow();
@@ -45,10 +45,10 @@ public class FarmServiceImplTest {
 
     @Test
     public void testFindAllFarms() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
-        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
-        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", "a" ,(float) 0.22321);
+        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", "a" ,(float) 0.22321);
+        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4","a" , (float) 0.22321);
 
         List<Farm> farmList = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class FarmServiceImplTest {
 
     @Test
     public void testCreateFarm() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(farmMongoRepository.save(farm)).thenReturn(farm);
 
         Farm testFarm = farmService.create(farm);
@@ -79,7 +79,7 @@ public class FarmServiceImplTest {
 
     @Test
     public void testDeleteFarm() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
 
         farmService.deleteById("1");
 
@@ -88,9 +88,9 @@ public class FarmServiceImplTest {
 
     @Test
     public void testUpdateFarm() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        FarmDto farmDto = new FarmDto("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
-        Farm farm2 = new Farm("1", "Ada2", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        FarmDto farmDto = new FarmDto("1", "Ada2", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Farm farm2 = new Farm("1", "Ada2", "Ganado", "Cogua", "a" ,(float) 0.22321);
 
         when(farmMongoRepository.findById("1")).thenReturn(Optional.of(farm));
         when(farmMongoRepository.save(farm)).thenReturn(farm2);

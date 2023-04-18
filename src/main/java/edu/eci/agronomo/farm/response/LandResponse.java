@@ -13,6 +13,7 @@ public class LandResponse {
     private String name;
     private String subPurpose;
     private String location;
+    private String imageUrl;
     private float area;
 
     public LandResponse(Land land) {
@@ -21,6 +22,7 @@ public class LandResponse {
         this.name = land.getName();
         this.subPurpose = land.getSubPurpose();
         this.location = land.getLocation();
+        this.imageUrl = land.getImageUrl();
         this.area =land.getArea();
     }
 }

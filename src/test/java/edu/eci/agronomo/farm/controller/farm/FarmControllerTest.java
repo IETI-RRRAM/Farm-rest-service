@@ -43,7 +43,7 @@ public class FarmControllerTest {
 
     @Test
     public void testFindByIdExistingFarm() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
 
         mockMvc.perform(get(BASE_URL + "1"))
@@ -57,10 +57,10 @@ public class FarmControllerTest {
 
     @Test
     public void testFindByAllFarms() throws Exception {
-        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", (float) 0.22321);
-        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", (float) 0.22321);
-        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4", (float) 0.22321);
+        Farm farm = new Farm("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
+        Farm farm2 = new Farm("2", "Ada2", "Ganado2", "Cogua2", "a" ,(float) 0.22321);
+        Farm farm3 = new Farm("3", "Ada3", "Ganado3", "Cogua3", "a" ,(float) 0.22321);
+        Farm farm4 = new Farm("4", "Ada4", "Ganado4", "Cogua4", "a" ,(float) 0.22321);
 
         List<Farm> farmList = new ArrayList<>();
 
@@ -101,7 +101,7 @@ public class FarmControllerTest {
 
     @Test
     public void testSaveNewFarm() throws Exception {
-        FarmDto userDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        FarmDto userDto = new FarmDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Farm farm = new Farm(userDto);
 
         when(farmService.create(any())).thenReturn(farm);
@@ -118,14 +118,14 @@ public class FarmControllerTest {
 
     @Test
     public void testUpdateExistingFarm() throws Exception {
-        FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
-        FarmDto farmDtoUpdated = new FarmDto("Ada", "Ada", "Ganado", "Cogua", (float) 0.0124);
+        FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua","a" ,(float) 0.22321);
+        FarmDto farmDtoUpdated = new FarmDto("Ada", "Ada", "Ganado", "Cogua", "a" ,(float) 0.0124);
         Farm farm = new Farm(farmDto);
         Farm farmUpdated = new Farm(farmDtoUpdated);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
         when(farmService.update("1", farmDtoUpdated)).thenReturn(farmUpdated);
 
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -138,7 +138,7 @@ public class FarmControllerTest {
     public void testUpdateNotExistingFarm() throws Exception {
         String id = "1";
         when(farmService.getById(id)).thenReturn(Optional.empty());
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(put(BASE_URL + id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -151,11 +151,11 @@ public class FarmControllerTest {
 
     @Test
     public void testDeleteExistingFarm() throws Exception {
-        FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", (float) 0.22321);
+        FarmDto farmDto = new FarmDto("1", "Ada", "Ganado", "Cogua", "a" ,(float) 0.22321);
         Farm farm = new Farm(farmDto);
         when(farmService.getById("1")).thenReturn(Optional.of(farm));
 
-        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\",\"area\":\"0.0124\"}";
+        String json = "{\"id\":\"1\",\"ownerId\":\"Ada\",\"name\":\"Ada\",\"purpose\":\"Ganado\",\"location\":\"Cogua\", \"imageUrl\":\"a\", \"area\":\"0.0124\"}";
         mockMvc.perform(delete(BASE_URL + "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
